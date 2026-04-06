@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUBIX - Libros con Realidad Aumentada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">EDUBIX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#libros">Libros</a></li>
+                <li><a href="#experiencia">Experiencia AR</a></li>
+                <li><a href="#descargar" class="nav-cta">Descargar EDUBIX</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">✨</span>
+                <span>Donde el conocimiento cobra vida</span>
+            </div>
+            <h1 class="hero-title">
+                EDUBIX AR
+                <span class="gradient-text">Educación del futuro</span>
+            </h1>
+            <p class="hero-subtitle">
+                Descubre una nueva forma de aprender con EDUBIX. Las páginas de tus libros de texto se transforman en experiencias interactivas con realidad aumentada.
+            </p>
+            <div class="hero-buttons">
+                <a href="#descargar" class="btn btn-primary">
+                    <span class="btn-icon">📱</span>
+                    Descargar App
+                </a>
+                <a href="#libros" class="btn btn-secondary">
+                    <span class="btn-icon">🔮</span>
+                    Ver Catálogo
+                </a>
+            </div>
+
+        </div>
+        <div class="hero-visual">
+            <div class="book-showcase">
+                <div class="floating-book book-1">
+                    <div class="book-spine"></div>
+                    <div class="book-cover">
+                        <div class="ar-overlay">
+                            <div class="ar-icon">🔮</div>
+                            <div class="ar-particles"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-book book-2">
+                    <div class="book-spine"></div>
+                    <div class="book-cover">
+                        <div class="ar-overlay">
+                            <div class="ar-icon">🦖</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-book book-3">
+                    <div class="book-spine"></div>
+                    <div class="book-cover">
+                        <div class="ar-overlay">
+                            <div class="ar-icon">🚀</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glow-effect"></div>
+        </div>
+    </section>
+
+    <!-- Romantic Quote Section -->
+    <section class="quote-section">
+        <div class="quote-container">
+            <div class="quote-mark">"</div>
+            <blockquote>
+                En el encuentro entre el papel y el píxel, 
+                <span class="highlight">nace el amor por aprender</span>. 
+                Cada página es una puerta, cada imagen AR una ventana 
+                a universos inexplorados de conocimiento.
+            </blockquote>
+            <div class="quote-author">— La magia de EDUBIX</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <span class="section-tag">Experiencia Única</span>
+            <h2>Educación que emociona</h2>
+            <p>La tecnología más avanzada al servicio de la curiosidad humana</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-bg">🔮</div>
+                </div>
+                <h3>Magia Real</h3>
+                <p>Los personajes salen del libro y interactúan contigo. Los diagramas se convierten en modelos 3D que puedes rotar y explorar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-bg">🎓</div>
+                </div>
+                <h3>Aprendizaje Inmersivo</h3>
+                <p>La retención de conocimiento aumenta un 70% cuando se combina la lectura con experiencias visuales interactivas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-bg">💫</div>
+                </div>
+                <h3>Imaginación Sin Límites</h3>
+                <p>Desde el interior de una célula hasta las estrellas más lejanas. Todo es posible cuando la tecnología expande los horizontes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-bg">🌟</div>
+                </div>
+                <h3>Para Toda la Familia</h3>
+                <p>Contenido curado para diferentes edades y niveles educativos. Desde preescolar hasta educación superior.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Catalog Section -->
+    <section id="libros" class="catalog">
+        <div class="section-header">
+            <span class="section-tag">Colección</span>
+            <h2>Libros que inspiran</h2>
+            <p>Cada volumen es un portal a nuevas dimensiones de conocimiento</p>
+        </div>
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-image">
+                    <div class="book-mockup civic">
+                        <div class="mockup-spine"></div>
+                        <div class="mockup-cover">
+                            <span class="mockup-title">Formación</span>
+                            <span class="mockup-subtitle">Cívica y Ética</span>
+                        </div>
+                    </div>
+                    <div class="ar-badge">AR</div>
+                </div>
+                <div class="book-info">
+                    <h3>Formación Cívica y Ética AR</h3>
+                    <p>Explora los valores democráticos, derechos humanos y cultura cívica con casos interactivos en 3D</p>
+                    <div class="book-meta">
+                        <span class="age">Secundaria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <div class="book-mockup history">
+                        <div class="mockup-spine"></div>
+                        <div class="mockup-cover">
+                            <span class="mockup-title">Historia</span>
+                            <span class="mockup-subtitle">de México</span>
+                        </div>
+                    </div>
+                    <div class="ar-badge">AR</div>
+                </div>
+                <div class="book-info">
+                    <h3>Historia de México AR</h3>
+                    <p>Viaja en el tiempo y revive los momentos históricos más importantes con reconstrucciones en 3D</p>
+                    <div class="book-meta">
+                        <span class="age">Secundaria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <div class="book-mockup tech">
+                        <div class="mockup-spine"></div>
+                        <div class="mockup-cover">
+                            <span class="mockup-title">Tecnología</span>
+                            <span class="mockup-subtitle">e Innovación</span>
+                        </div>
+                    </div>
+                    <div class="ar-badge">AR</div>
+                </div>
+                <div class="book-info">
+                    <h3>Tecnología e Innovación AR</h3>
+                    <p>Descubre los principios de la programación, robótica y sistemas digitales con modelos interactivos</p>
+                    <div class="book-meta">
+                        <span class="age">Secundaria</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-image">
+                    <div class="book-mockup math">
+                        <div class="mockup-spine"></div>
+                        <div class="mockup-cover">
+                            <span class="mockup-title">Matemáticas</span>
+                            <span class="mockup-subtitle">Interactivas</span>
+                        </div>
+                    </div>
+                    <div class="ar-badge">AR</div>
+                </div>
+                <div class="book-info">
+                    <h3>Matemáticas AR</h3>
+                    <p>Visualiza funciones, geometría y estadística con modelos 3D que facilitan el aprendizaje</p>
+                    <div class="book-meta">
+                        <span class="age">Secundaria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AR Experience Demo Section -->
+    <section id="experiencia" class="experience">
+        <div class="experience-container">
+            <div class="experience-content">
+                <span class="section-tag">Cómo funciona</span>
+                <h2>Tres pasos hacia la magia</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Descarga la app</h3>
+                            <p>Instala EDUBIX AR en tu dispositivo Android</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Apunta tu cámara</h3>
+                            <p>Enfoca las páginas con contenido AR marcado</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Descubre y aprende</h3>
+                            <p>Interactúa con el contenido 3D que aparece</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="experience-visual">
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="ar-scene">
+                                <div class="ar-object dinosaur">
+                                    <div class="dino-body">🦕</div>
+                                    <div class="ar-scan-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-shadow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="descargar" class="download">
+        <div class="download-container">
+            <div class="download-content">
+                <div class="download-badge">
+                    <span class="pulse"></span>
+                    ¡Disponible ahora!
+                </div>
+                <h2>Comienza tu aventura</h2>
+                <p class="download-desc">
+                    Descarga la aplicación EDUBIX AR y transforma tus libros de texto 
+                    en experiencias de aprendizaje interactivas. Compatible con dispositivos Android 8.0+
+                </p>
+                <div class="download-specs">
+                    <div class="spec">
+                        <span class="spec-icon">📱</span>
+                        <span class="spec-text">Android 8.0+</span>
+                    </div>
+                    <div class="spec">
+                        <span class="spec-icon">💾</span>
+                        <span class="spec-text">45 MB</span>
+                    </div>
+                    <div class="spec">
+                        <span class="spec-icon">⭐</span>
+                        <span class="spec-text">4.9 ★★★★★</span>
+                    </div>
+                </div>
+                <a href="app-debug.apk" class="download-btn" download>
+                    <div class="btn-content">
+                        <span class="btn-icon-large">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </span>
+                        <div class="btn-text">
+                            <span class="btn-label">Descargar APK</span>
+                            <span class="btn-version">Versión 2.1.0</span>
+                        </div>
+                    </div>
+                    <div class="btn-shine"></div>
+                </a>
+                <p class="download-note">
+                    ⚠️ Es posible que necesites habilitar "Orígenes desconocidos" en tu dispositivo 
+                    para instalar aplicaciones fuera de Google Play Store.
+                </p>
+            </div>
+            <div class="download-decoration">
+                <div class="floating-elements">
+                    <div class="float-el el-1">📚</div>
+                    <div class="float-el el-2">🔮</div>
+                    <div class="float-el el-3">✨</div>
+                    <div class="float-el el-4">🚀</div>
+                    <div class="float-el el-5">🌟</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">EDUBIX</span>
+                </div>
+                <p>Transformando la educación, un libro mágico a la vez.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Producto</h4>
+                    <a href="#libros">Catálogo</a>
+                    <a href="#experiencia">Cómo funciona</a>
+                    <a href="#descargar">Descargar</a>
+                </div>
+                <div class="link-group">
+                    <h4>Compañía</h4>
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <a href="#">Términos</a>
+                    <a href="#">Privacidad</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 EDUBIX. Todos los derechos reservados.</p>
+            <span class="footer-tagline">EDUBIX - Educación que transforma</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

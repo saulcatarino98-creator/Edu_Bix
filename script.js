@@ -7,6 +7,42 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounterAnimation();
 });
 
+// ===== Shared Utilities =====
+
+// Inject a <style> block into the document head.
+function injectStyles(css) {
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+    return style;
+}
+
+// Observe one or more elements and fire the callback once when each first
+// becomes visible, then stop observing that element.
+function observeOnce(targets, onIntersect, options) {
+    const elements = targets instanceof Element ? [targets] : targets;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                onIntersect(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    elements.forEach(el => observer.observe(el));
+    return observer;
+}
+
+// Attach mouseenter/mouseleave handlers to a collection of elements.
+function addHoverEffect(elements, onEnter, onLeave) {
+    elements.forEach(el => {
+        el.addEventListener('mouseenter', () => onEnter(el));
+        el.addEventListener('mouseleave', () => onLeave(el));
+    });
+}
+
 // ===== Particle System =====
 function initParticles() {
     const particlesContainer = document.getElementById('particles');
@@ -47,20 +83,6 @@ function createParticle(container) {
 
 // ===== Scroll Animations =====
 function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
     // Elements to animate
     const animateElements = document.querySelectorAll(
         '.feature-card, .book-card, .step, .stat'
@@ -70,19 +92,23 @@ function initScrollAnimations() {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        observer.observe(el);
+    });
+
+    observeOnce(animateElements, (target) => {
+        target.classList.add('animate-in');
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 }
 
 // Add animation class styles dynamically
-const animationStyles = document.createElement('style');
-animationStyles.textContent = `
+injectStyles(`
     .animate-in {
         opacity: 1 !important;
         transform: translateY(0) !important;
     }
-`;
-document.head.appendChild(animationStyles);
+`);
 
 // ===== Parallax Effect =====
 function initParallaxEffect() {
@@ -148,31 +174,20 @@ function initNavigation() {
 // ===== Counter Animation =====
 function initCounterAnimation() {
     const stats = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
+
+    observeOnce(stats, (target) => {
+        const finalValue = target.textContent;
+
+        // Extract number and suffix
+        const match = finalValue.match(/^([\d.]+)(.*)$/);
+        if (match) {
+            const number = parseFloat(match[1]);
+            const suffix = match[2];
+            animateCounter(target, number, suffix);
+        }
+    }, {
         threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = target.textContent;
-                
-                // Extract number and suffix
-                const match = finalValue.match(/^([\d.]+)(.*)$/);
-                if (match) {
-                    const number = parseFloat(match[1]);
-                    const suffix = match[2];
-                    animateCounter(target, number, suffix);
-                }
-                
-                observer.unobserve(target);
-            }
-        });
-    }, observerOptions);
-
-    stats.forEach(stat => observer.observe(stat));
+    });
 }
 
 function animateCounter(element, target, suffix) {
@@ -199,33 +214,33 @@ function animateCounter(element, target, suffix) {
 }
 
 // ===== Book Card Hover Effect =====
-document.querySelectorAll('.book-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
+addHoverEffect(
+    document.querySelectorAll('.book-card'),
+    (card) => {
+        card.style.transform = 'translateY(-15px) scale(1.02)';
+    },
+    (card) => {
+        card.style.transform = 'translateY(0) scale(1)';
+    }
+);
 
 // ===== Feature Card Interactions =====
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        const icon = this.querySelector('.icon-bg');
+addHoverEffect(
+    document.querySelectorAll('.feature-card'),
+    (card) => {
+        const icon = card.querySelector('.icon-bg');
         if (icon) {
             icon.style.transform = 'scale(1.1) rotate(5deg)';
             icon.style.transition = 'transform 0.3s ease';
         }
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        const icon = this.querySelector('.icon-bg');
+    },
+    (card) => {
+        const icon = card.querySelector('.icon-bg');
         if (icon) {
             icon.style.transform = 'scale(1) rotate(0deg)';
         }
-    });
-});
+    }
+);
 
 // ===== Download Button Ripple Effect =====
 const downloadBtn = document.querySelector('.download-btn');
@@ -255,16 +270,14 @@ if (downloadBtn) {
 }
 
 // Add ripple animation styles
-const rippleStyles = document.createElement('style');
-rippleStyles.textContent = `
+injectStyles(`
     @keyframes rippleEffect {
         to {
             transform: scale(20);
             opacity: 0;
         }
     }
-`;
-document.head.appendChild(rippleStyles);
+`);
 
 // ===== Phone AR Scene Animation =====
 function initPhoneAnimation() {
@@ -320,8 +333,7 @@ function initGlitchEffect() {
 }
 
 // Add glitch animation
-const glitchStyles = document.createElement('style');
-glitchStyles.textContent = `
+injectStyles(`
     @keyframes glitch {
         0% { transform: translate(0); }
         20% { transform: translate(-2px, 2px); }
@@ -330,8 +342,7 @@ glitchStyles.textContent = `
         80% { transform: translate(2px, -2px); }
         100% { transform: translate(0); }
     }
-`;
-document.head.appendChild(glitchStyles);
+`);
 
 initGlitchEffect();
 
@@ -359,16 +370,9 @@ function initTypingEffect() {
 }
 
 // Start typing effect when quote is visible
-const quoteObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            initTypingEffect();
-            quoteObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
 const quote = document.querySelector('blockquote');
-if (quote) quoteObserver.observe(quote);
+if (quote) {
+    observeOnce(quote, initTypingEffect, { threshold: 0.5 });
+}
 
 console.log('🚀 EDUBIX AR Landing Page Loaded');

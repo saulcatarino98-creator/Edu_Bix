@@ -1,10 +1,21 @@
 // EduMux Landing Page - Interactive Animations
+
+// Runs an initializer in isolation so a failure in one feature is logged
+// instead of silently aborting the initializers that follow it.
+function safeInit(fn) {
+    try {
+        fn();
+    } catch (error) {
+        console.error(`Failed to initialize "${fn.name || 'anonymous'}":`, error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    initParticles();
-    initScrollAnimations();
-    initParallaxEffect();
-    initNavigation();
-    initCounterAnimation();
+    safeInit(initParticles);
+    safeInit(initScrollAnimations);
+    safeInit(initParallaxEffect);
+    safeInit(initNavigation);
+    safeInit(initCounterAnimation);
 });
 
 // ===== Particle System =====
@@ -117,18 +128,20 @@ function initNavigation() {
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        // Add/remove background on scroll
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(15, 15, 26, 0.95)';
-        } else {
-            navbar.style.background = 'rgba(15, 15, 26, 0.8)';
-        }
-        
-        lastScroll = currentScroll;
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            // Add/remove background on scroll
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(15, 15, 26, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 26, 0.8)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    }
 
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -302,7 +315,7 @@ function initPhoneAnimation() {
 }
 
 // Initialize phone animation after load
-window.addEventListener('load', initPhoneAnimation);
+window.addEventListener('load', () => safeInit(initPhoneAnimation));
 
 // ===== Glitch Effect for Title =====
 function initGlitchEffect() {
@@ -333,7 +346,7 @@ glitchStyles.textContent = `
 `;
 document.head.appendChild(glitchStyles);
 
-initGlitchEffect();
+safeInit(initGlitchEffect);
 
 // ===== Typing Effect for Quote =====
 function initTypingEffect() {
@@ -362,7 +375,7 @@ function initTypingEffect() {
 const quoteObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            initTypingEffect();
+            safeInit(initTypingEffect);
             quoteObserver.unobserve(entry.target);
         }
     });
